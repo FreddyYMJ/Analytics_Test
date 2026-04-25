@@ -189,7 +189,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="limpieza-y-carga-de-datos" class="level1" data-number="1">
 <h1 data-number="1"><span class="header-section-number">1</span> 1. Limpieza y carga de datos</h1>
 <p>Se conecta al servidor SQL Server de la empresa usando credenciales de solo lectura.</p>
-<div id="8867ca89" class="cell" data-execution_count="1">
+<div id="26428dbe" class="cell" data-execution_count="1">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
@@ -272,7 +272,7 @@ PROCESO DE LIMPIEZA Y PREPARACIÓN DE DATOS
 <section id="conexión-con-base-de-datos-sql-server" class="level1" data-number="2">
 <h1 data-number="2"><span class="header-section-number">2</span> 2. Conexión con base de datos SQL Server</h1>
 <p>Se crea una función reutilizable para cargar cada tabla de la base de datos. Se cargan las tablas de producción, ventas, productos, guías y clientes.</p>
-<div id="e8b61e68" class="cell" data-execution_count="2">
+<div id="56e9dc40" class="cell" data-execution_count="2">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">Conectando a base de datos..."</span>)</span>
@@ -335,7 +335,7 @@ Cargando tablas desde SQL Server...
 <section id="estandarizar-fechas-solo-tabla-de-ventas" class="level1" data-number="3">
 <h1 data-number="3"><span class="header-section-number">3</span> 3. Estandarizar fechas (solo tabla de Ventas)</h1>
 <p>La producción usa la fecha de la guía (PdGuiaFch). Las ventas usan VdVenFec. Se convierten ambas a formato datetime.</p>
-<div id="58f62f6b" class="cell" data-execution_count="3">
+<div id="62335d19" class="cell" data-execution_count="3">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">Estandarizando fechas..."</span>)</span>
@@ -358,7 +358,7 @@ Estandarizando fechas...
 <section id="crear-tabla-calendario-normal" class="level1" data-number="4">
 <h1 data-number="4"><span class="header-section-number">4</span> 4. Crear tabla calendario normal</h1>
 <p>Se crea un calendario con todas las fechas desde el primer registro hasta el último.</p>
-<div id="3d2e1f2c" class="cell" data-execution_count="4">
+<div id="4c4facfd" class="cell" data-execution_count="4">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">Creando calendario normal..."</span>)</span>
@@ -390,14 +390,14 @@ Creando calendario normal...
 <section id="enriquecer-tabla-de-ventas" class="level1" data-number="5">
 <h1 data-number="5"><span class="header-section-number">5</span> 5. Enriquecer tabla de Ventas</h1>
 <p>Se agrega la zona del cliente y las dimensiones de cada producto (largo, ancho, alto). Luego se calcula el volumen vendido en metros cúbicos.</p>
-<div id="e47343de" class="cell" data-execution_count="5">
+<div id="52d7d57e" class="cell" data-execution_count="5">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"ENRIQUECIENDO TABLA DE VENTAS"</span>)</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"="</span><span class="op">*</span><span class="dv">60</span>)</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Agregar zona desde XmCli</span></span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">📊 1. Agregando zona de cliente (XmZonCod)..."</span>)</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st"> 1. Agregando zona de cliente (XmZonCod)..."</span>)</span>
 <span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="st">'AmScnCod'</span> <span class="kw">in</span> df_VdVen.columns <span class="kw">and</span> <span class="st">'AmScnCod'</span> <span class="kw">in</span> df_XmCli.columns <span class="kw">and</span> <span class="st">'XmZonCod'</span> <span class="kw">in</span> df_XmCli.columns:</span>
 <span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>    zona_map <span class="op">=</span> df_XmCli.set_index(<span class="st">'AmScnCod'</span>)[<span class="st">'XmZonCod'</span>].to_dict()</span>
 <span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>    df_VdVen[<span class="st">'XmZonCod'</span>] <span class="op">=</span> df_VdVen[<span class="st">'AmScnCod'</span>].<span class="bu">map</span>(zona_map)</span>
@@ -406,7 +406,7 @@ Creando calendario normal...
 <span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"   ⚠️ No se pudo agregar zona"</span>)</span>
 <span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. Agregar campos desde ImRec</span></span>
-<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">📊 2. Agregando campos desde ImRec..."</span>)</span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st"> 2. Agregando campos desde ImRec..."</span>)</span>
 <span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Definir columnas a traer</span></span>
 <span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>columnas_imrec <span class="op">=</span> [<span class="st">'ImRecCod'</span>, <span class="st">'ImRecAlt'</span>, <span class="st">'ImRecLrg'</span>, <span class="st">'ImRecAnc'</span>, <span class="st">'ImRecGrp01'</span>, <span class="st">'ImRecGrp04'</span>, <span class="st">'ImRecGrp06'</span>]</span>
@@ -444,7 +444,7 @@ Creando calendario normal...
 <span id="cb9-49"><a href="#cb9-49" aria-hidden="true" tabindex="-1"></a>df_VdVen[<span class="st">'VdVenCanAj'</span>] <span class="op">=</span> df_VdVen.<span class="bu">apply</span>(aj_cantidad, axis<span class="op">=</span><span class="dv">1</span>)</span>
 <span id="cb9-50"><a href="#cb9-50" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb9-51"><a href="#cb9-51" aria-hidden="true" tabindex="-1"></a><span class="co"># 3. Verificar que las columnas existen antes de calcular</span></span>
-<span id="cb9-52"><a href="#cb9-52" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">📊 3. Verificando columnas para Ventas_m3..."</span>)</span>
+<span id="cb9-52"><a href="#cb9-52" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st"> 3. Verificando columnas para Ventas_m3..."</span>)</span>
 <span id="cb9-53"><a href="#cb9-53" aria-hidden="true" tabindex="-1"></a>columnas_necesarias <span class="op">=</span> [<span class="st">'VdVenCanAj'</span>, <span class="st">'ImRecLrg'</span>, <span class="st">'ImRecAnc'</span>, <span class="st">'ImRecAlt'</span>]</span>
 <span id="cb9-54"><a href="#cb9-54" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> col <span class="kw">in</span> columnas_necesarias:</span>
 <span id="cb9-55"><a href="#cb9-55" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> col <span class="kw">in</span> df_VdVen.columns:</span>
@@ -461,12 +461,12 @@ Creando calendario normal...
 <span id="cb9-66"><a href="#cb9-66" aria-hidden="true" tabindex="-1"></a>        df_VdVen[<span class="st">'ImRecAlt'</span>].fillna(<span class="dv">1</span>)</span>
 <span id="cb9-67"><a href="#cb9-67" aria-hidden="true" tabindex="-1"></a>    ) <span class="op">/</span> <span class="dv">1000</span></span>
 <span id="cb9-68"><a href="#cb9-68" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">   ✅ Ventas_m3 calculada"</span>)</span>
-<span id="cb9-69"><a href="#cb9-69" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"   📊 Total: </span><span class="sc">{</span>df_VdVen[<span class="st">'Ventas_m3'</span>]<span class="sc">.</span><span class="bu">sum</span>()<span class="sc">:,.2f}</span><span class="ss">"</span>)</span>
+<span id="cb9-69"><a href="#cb9-69" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"    Total: </span><span class="sc">{</span>df_VdVen[<span class="st">'Ventas_m3'</span>]<span class="sc">.</span><span class="bu">sum</span>()<span class="sc">:,.2f}</span><span class="ss">"</span>)</span>
 <span id="cb9-70"><a href="#cb9-70" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
 <span id="cb9-71"><a href="#cb9-71" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">   ⚠️ No se puede calcular Ventas_m3. Faltan columnas."</span>)</span>
 <span id="cb9-72"><a href="#cb9-72" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb9-73"><a href="#cb9-73" aria-hidden="true" tabindex="-1"></a><span class="co"># 5. Vista previa</span></span>
-<span id="cb9-74"><a href="#cb9-74" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">📋 Vista previa (primeras 3 filas):"</span>)</span>
+<span id="cb9-74"><a href="#cb9-74" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st"> Vista previa (primeras 3 filas):"</span>)</span>
 <span id="cb9-75"><a href="#cb9-75" aria-hidden="true" tabindex="-1"></a>columnas_ver <span class="op">=</span> [<span class="st">'VdVenFec'</span>, <span class="st">'ImRecCod'</span>, <span class="st">'VdVenCan'</span>, <span class="st">'ImRecLrg'</span>, <span class="st">'ImRecAnc'</span>, <span class="st">'ImRecAlt'</span>, <span class="st">'XmZonCod'</span>]</span>
 <span id="cb9-76"><a href="#cb9-76" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="st">'Ventas_m3'</span> <span class="kw">in</span> df_VdVen.columns:</span>
 <span id="cb9-77"><a href="#cb9-77" aria-hidden="true" tabindex="-1"></a>    columnas_ver.append(<span class="st">'Ventas_m3'</span>)</span>
@@ -477,23 +477,23 @@ Creando calendario normal...
 <pre><code>ENRIQUECIENDO TABLA DE VENTAS
 ============================================================
 
-📊 1. Agregando zona de cliente (XmZonCod)...
+ 1. Agregando zona de cliente (XmZonCod)...
    ✅ Zona asignada correctamente
 
-📊 2. Agregando campos desde ImRec...
+ 2. Agregando campos desde ImRec...
    Columnas a traer: ['ImRecCod', 'ImRecAlt', 'ImRecLrg', 'ImRecAnc', 'ImRecGrp01', 'ImRecGrp04', 'ImRecGrp06']
    ✅ Merge completado. Nuevas columnas agregadas.
 
-📊 3. Verificando columnas para Ventas_m3...
+ 3. Verificando columnas para Ventas_m3...
    ✅ VdVenCanAj existe
    ✅ ImRecLrg existe
    ✅ ImRecAnc existe
    ✅ ImRecAlt existe
 
    ✅ Ventas_m3 calculada
-   📊 Total: 37,904.20
+    Total: 37,904.20
 
-📋 Vista previa (primeras 3 filas):
+ Vista previa (primeras 3 filas):
     VdVenFec                                           ImRecCod  VdVenCan  \
 0 2024-01-29  PP122244X3.6ST                                ...     550.0   
 1 2024-01-29  PP122244X04ST                                 ...     750.0   
@@ -509,14 +509,14 @@ Creando calendario normal...
 <section id="enriquecer-tabla-de-producción-y-agrupar-con-tabla-pdguia" class="level1" data-number="6">
 <h1 data-number="6"><span class="header-section-number">6</span> 6. Enriquecer tabla de Producción y agrupar con tabla PdGuia</h1>
 <p>Se agrupa la producción por número de guía para evitar duplicados. Se agregan las dimensiones de cada producto y se calcula el volumen producido.</p>
-<div id="c2fdc9b2" class="cell" data-execution_count="6">
+<div id="23dac478" class="cell" data-execution_count="6">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"PRODUCCIÓN AGRUPADA POR GUÍA"</span>)</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"="</span><span class="op">*</span><span class="dv">60</span>)</span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Agrupar producción por guía</span></span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">📊 1. Agrupando producción por guía..."</span>)</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st"> 1. Agrupando producción por guía..."</span>)</span>
 <span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>df_produccion <span class="op">=</span> df_IdInv.groupby(<span class="st">'IdInvGuia'</span>).agg(</span>
 <span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>    IdInvCan_sum <span class="op">=</span> (<span class="st">'IdInvCan'</span>, <span class="st">'sum'</span>),</span>
 <span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>    ImRecCod <span class="op">=</span> (<span class="st">'ImRecCod'</span>, <span class="st">'first'</span>),</span>
@@ -528,7 +528,7 @@ Creando calendario normal...
 <span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"   ✅ Guías únicas: </span><span class="sc">{</span><span class="bu">len</span>(df_produccion)<span class="sc">:,}</span><span class="ss">"</span>)</span>
 <span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. Unir con PdGuia para obtener fecha</span></span>
-<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">📊 2. Uniendo con PdGuia para obtener fecha..."</span>)</span>
+<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st"> 2. Uniendo con PdGuia para obtener fecha..."</span>)</span>
 <span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a>df_produccion <span class="op">=</span> df_produccion.merge(</span>
 <span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a>    df_PdGuia[[<span class="st">'PdGuiaNum'</span>, <span class="st">'PdGuiaFch'</span>]],</span>
 <span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a>    left_on<span class="op">=</span><span class="st">'IdInvGuia'</span>,</span>
@@ -540,7 +540,7 @@ Creando calendario normal...
 <span id="cb11-26"><a href="#cb11-26" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"   ✅ Con fecha válida: </span><span class="sc">{</span><span class="bu">len</span>(df_produccion)<span class="sc">:,}</span><span class="ss"> filas"</span>)</span>
 <span id="cb11-27"><a href="#cb11-27" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb11-28"><a href="#cb11-28" aria-hidden="true" tabindex="-1"></a><span class="co"># 3. Unir con ImRec para dimensiones</span></span>
-<span id="cb11-29"><a href="#cb11-29" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">📊 3. Uniendo con ImRec para dimensiones..."</span>)</span>
+<span id="cb11-29"><a href="#cb11-29" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st"> 3. Uniendo con ImRec para dimensiones..."</span>)</span>
 <span id="cb11-30"><a href="#cb11-30" aria-hidden="true" tabindex="-1"></a>df_produccion <span class="op">=</span> df_produccion.merge(</span>
 <span id="cb11-31"><a href="#cb11-31" aria-hidden="true" tabindex="-1"></a>    df_ImRec[[<span class="st">'ImRecCod'</span>, <span class="st">'ImRecLrg'</span>, <span class="st">'ImRecAnc'</span>, <span class="st">'ImRecAlt'</span>, <span class="st">'ImRecGrp01'</span>, <span class="st">'ImRecGrp04'</span>, <span class="st">'ImRecGrp06'</span>]],</span>
 <span id="cb11-32"><a href="#cb11-32" aria-hidden="true" tabindex="-1"></a>    on<span class="op">=</span><span class="st">'ImRecCod'</span>,</span>
@@ -549,7 +549,7 @@ Creando calendario normal...
 <span id="cb11-35"><a href="#cb11-35" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"   ✅ Dimensiones agregadas"</span>)</span>
 <span id="cb11-36"><a href="#cb11-36" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb11-37"><a href="#cb11-37" aria-hidden="true" tabindex="-1"></a><span class="co"># 4. Calcular Prod_m3</span></span>
-<span id="cb11-38"><a href="#cb11-38" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">📊 4. Calculando Prod_m3..."</span>)</span>
+<span id="cb11-38"><a href="#cb11-38" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st"> 4. Calculando Prod_m3..."</span>)</span>
 <span id="cb11-39"><a href="#cb11-39" aria-hidden="true" tabindex="-1"></a>df_produccion[<span class="st">'Prod_m3'</span>] <span class="op">=</span> (</span>
 <span id="cb11-40"><a href="#cb11-40" aria-hidden="true" tabindex="-1"></a>    df_produccion[<span class="st">'IdInvCan_sum'</span>] <span class="op">*</span> </span>
 <span id="cb11-41"><a href="#cb11-41" aria-hidden="true" tabindex="-1"></a>    df_produccion[<span class="st">'ImRecLrg'</span>].fillna(<span class="dv">1</span>) <span class="op">*</span> </span>
@@ -558,11 +558,11 @@ Creando calendario normal...
 <span id="cb11-44"><a href="#cb11-44" aria-hidden="true" tabindex="-1"></a>) <span class="op">/</span> <span class="dv">1000</span></span>
 <span id="cb11-45"><a href="#cb11-45" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb11-46"><a href="#cb11-46" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">   ✅ Prod_m3 calculado"</span>)</span>
-<span id="cb11-47"><a href="#cb11-47" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"   📊 Total: </span><span class="sc">{</span>df_produccion[<span class="st">'Prod_m3'</span>]<span class="sc">.</span><span class="bu">sum</span>()<span class="sc">:,.2f}</span><span class="ss"> m³"</span>)</span>
-<span id="cb11-48"><a href="#cb11-48" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"   📊 Prod_m3 negativo: </span><span class="sc">{</span>(df_produccion[<span class="st">'Prod_m3'</span>] <span class="op">&lt;</span> <span class="dv">0</span>)<span class="sc">.</span><span class="bu">sum</span>()<span class="sc">:,}</span><span class="ss">"</span>)</span>
+<span id="cb11-47"><a href="#cb11-47" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"    Total: </span><span class="sc">{</span>df_produccion[<span class="st">'Prod_m3'</span>]<span class="sc">.</span><span class="bu">sum</span>()<span class="sc">:,.2f}</span><span class="ss"> m³"</span>)</span>
+<span id="cb11-48"><a href="#cb11-48" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"    Prod_m3 negativo: </span><span class="sc">{</span>(df_produccion[<span class="st">'Prod_m3'</span>] <span class="op">&lt;</span> <span class="dv">0</span>)<span class="sc">.</span><span class="bu">sum</span>()<span class="sc">:,}</span><span class="ss">"</span>)</span>
 <span id="cb11-49"><a href="#cb11-49" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb11-50"><a href="#cb11-50" aria-hidden="true" tabindex="-1"></a><span class="co"># 5. Calcular turno (opcional)</span></span>
-<span id="cb11-51"><a href="#cb11-51" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">📊 5. Calculando turno de producción..."</span>)</span>
+<span id="cb11-51"><a href="#cb11-51" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st"> 5. Calculando turno de producción..."</span>)</span>
 <span id="cb11-52"><a href="#cb11-52" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb11-53"><a href="#cb11-53" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> calcular_turno(fecha_guia):</span>
 <span id="cb11-54"><a href="#cb11-54" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> pd.isna(fecha_guia):</span>
@@ -576,11 +576,11 @@ Creando calendario normal...
 <span id="cb11-62"><a href="#cb11-62" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="st">'PdGuiaFch'</span> <span class="kw">in</span> df_produccion.columns:</span>
 <span id="cb11-63"><a href="#cb11-63" aria-hidden="true" tabindex="-1"></a>    df_produccion[<span class="st">'Turno'</span>] <span class="op">=</span> df_produccion[<span class="st">'PdGuiaFch'</span>].<span class="bu">apply</span>(calcular_turno)</span>
 <span id="cb11-64"><a href="#cb11-64" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"   ✅ Turno calculado"</span>)</span>
-<span id="cb11-65"><a href="#cb11-65" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"   📊 Distribución:"</span>)</span>
+<span id="cb11-65"><a href="#cb11-65" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"       Distribución:"</span>)</span>
 <span id="cb11-66"><a href="#cb11-66" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(df_produccion[<span class="st">'Turno'</span>].value_counts())</span>
 <span id="cb11-67"><a href="#cb11-67" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb11-68"><a href="#cb11-68" aria-hidden="true" tabindex="-1"></a><span class="co"># 6. Vista previa</span></span>
-<span id="cb11-69"><a href="#cb11-69" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">📋 Vista previa (primeras 3 filas):"</span>)</span>
+<span id="cb11-69"><a href="#cb11-69" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st"> Vista previa (primeras 3 filas):"</span>)</span>
 <span id="cb11-70"><a href="#cb11-70" aria-hidden="true" tabindex="-1"></a>columnas_ver <span class="op">=</span> [<span class="st">'fecha'</span>, <span class="st">'IdInvGuia'</span>, <span class="st">'ImRecCod'</span>, <span class="st">'IdInvCan_sum'</span>, <span class="st">'Prod_m3'</span>, <span class="st">'Turno'</span>]</span>
 <span id="cb11-71"><a href="#cb11-71" aria-hidden="true" tabindex="-1"></a>columnas_existentes <span class="op">=</span> [col <span class="cf">for</span> col <span class="kw">in</span> columnas_ver <span class="cf">if</span> col <span class="kw">in</span> df_produccion.columns]</span>
 <span id="cb11-72"><a href="#cb11-72" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df_produccion[columnas_existentes].head(<span class="dv">3</span>))</span>
@@ -591,30 +591,30 @@ Creando calendario normal...
 <pre><code>PRODUCCIÓN AGRUPADA POR GUÍA
 ============================================================
 
-📊 1. Agrupando producción por guía...
+ 1. Agrupando producción por guía...
    ✅ Guías únicas: 14,986
 
-📊 2. Uniendo con PdGuia para obtener fecha...
+ 2. Uniendo con PdGuia para obtener fecha...
    ✅ Con fecha válida: 14,986 filas
 
-📊 3. Uniendo con ImRec para dimensiones...
+ 3. Uniendo con ImRec para dimensiones...
    ✅ Dimensiones agregadas
 
-📊 4. Calculando Prod_m3...
+ 4. Calculando Prod_m3...
 
    ✅ Prod_m3 calculado
-   📊 Total: 44,398.53 m³
-   📊 Prod_m3 negativo: 285
+    Total: 44,398.53 m³
+    Prod_m3 negativo: 285
 
-📊 5. Calculando turno de producción...
+ 5. Calculando turno de producción...
    ✅ Turno calculado
-   📊 Distribución:
+       Distribución:
 Turno
 T2    8115
 T1    6871
 Name: count, dtype: int64
 
-📋 Vista previa (primeras 3 filas):
+ Vista previa (primeras 3 filas):
        fecha  IdInvGuia                                           ImRecCod  \
 0 2024-04-01        1.0  PP122244X18ST                                 ...   
 1 2024-04-01        2.0  PP122244X18ST                                 ...   
@@ -632,7 +632,7 @@ Name: count, dtype: int64
 <section id="guardar-archivos-.parquet-para-github" class="level1" data-number="7">
 <h1 data-number="7"><span class="header-section-number">7</span> 7. Guardar archivos .parquet para GitHub</h1>
 <p>Se guardan las tablas ya procesadas en formato Parquet para usarlas en el dashboard.</p>
-<div id="d51c3e99" class="cell" data-execution_count="7">
+<div id="532e4499" class="cell" data-execution_count="7">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"GUARDANDO TABLAS ENRIQUECIDAS"</span>)</span>
@@ -642,28 +642,28 @@ Name: count, dtype: int64
 <span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>os.makedirs(<span class="st">'data/processed'</span>, exist_ok<span class="op">=</span><span class="va">True</span>)</span>
 <span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Guardar producción enriquecida</span></span>
-<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">📊 1. Guardando producción enriquecida..."</span>)</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st"> 1. Guardando producción enriquecida..."</span>)</span>
 <span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>df_produccion.to_parquet(<span class="st">'data/processed/produccion_enriquecida.parquet'</span>, index<span class="op">=</span><span class="va">False</span>)</span>
 <span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"   ✅ produccion_enriquecida.parquet (</span><span class="sc">{</span><span class="bu">len</span>(df_produccion)<span class="sc">:,}</span><span class="ss"> filas, </span><span class="sc">{</span><span class="bu">len</span>(df_produccion.columns)<span class="sc">}</span><span class="ss"> columnas)"</span>)</span>
 <span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. Guardar ventas enriquecidas</span></span>
-<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">📊 2. Guardando ventas enriquecidas..."</span>)</span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st"> 2. Guardando ventas enriquecidas..."</span>)</span>
 <span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>df_VdVen.to_parquet(<span class="st">'data/processed/ventas_enriquecidas.parquet'</span>, index<span class="op">=</span><span class="va">False</span>)</span>
 <span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"   ✅ ventas_enriquecidas.parquet (</span><span class="sc">{</span><span class="bu">len</span>(df_VdVen)<span class="sc">:,}</span><span class="ss"> filas, </span><span class="sc">{</span><span class="bu">len</span>(df_VdVen.columns)<span class="sc">}</span><span class="ss"> columnas)"</span>)</span>
 <span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a><span class="co"># 3. Guardar calendario normal</span></span>
-<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">📊 3. Guardando calendario normal..."</span>)</span>
+<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st"> 3. Guardando calendario normal..."</span>)</span>
 <span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a>df_calendario_normal.to_parquet(<span class="st">'data/processed/calendario_normal.parquet'</span>, index<span class="op">=</span><span class="va">False</span>)</span>
 <span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"   ✅ calendario_normal.parquet (</span><span class="sc">{</span><span class="bu">len</span>(df_calendario_normal)<span class="sc">:,}</span><span class="ss"> días)"</span>)</span>
 <span id="cb13-21"><a href="#cb13-21" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb13-22"><a href="#cb13-22" aria-hidden="true" tabindex="-1"></a><span class="co"># 4. Guardar productos (ImRec) - opcional (como respaldo)</span></span>
-<span id="cb13-23"><a href="#cb13-23" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">📊 4. Guardando catálogo de productos..."</span>)</span>
+<span id="cb13-23"><a href="#cb13-23" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st"> 4. Guardando catálogo de productos..."</span>)</span>
 <span id="cb13-24"><a href="#cb13-24" aria-hidden="true" tabindex="-1"></a>df_ImRec.to_parquet(<span class="st">'data/processed/productos.parquet'</span>, index<span class="op">=</span><span class="va">False</span>)</span>
 <span id="cb13-25"><a href="#cb13-25" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"   ✅ productos.parquet (</span><span class="sc">{</span><span class="bu">len</span>(df_ImRec)<span class="sc">:,}</span><span class="ss"> filas)"</span>)</span>
 <span id="cb13-26"><a href="#cb13-26" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb13-27"><a href="#cb13-27" aria-hidden="true" tabindex="-1"></a><span class="co"># 5. Guardar clientes - opcional</span></span>
 <span id="cb13-28"><a href="#cb13-28" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="st">'df_XmCli'</span> <span class="kw">in</span> <span class="bu">locals</span>():</span>
-<span id="cb13-29"><a href="#cb13-29" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">📊 5. Guardando catálogo de clientes..."</span>)</span>
+<span id="cb13-29"><a href="#cb13-29" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st"> 5. Guardando catálogo de clientes..."</span>)</span>
 <span id="cb13-30"><a href="#cb13-30" aria-hidden="true" tabindex="-1"></a>    df_XmCli.to_parquet(<span class="st">'data/processed/clientes.parquet'</span>, index<span class="op">=</span><span class="va">False</span>)</span>
 <span id="cb13-31"><a href="#cb13-31" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"   ✅ clientes.parquet (</span><span class="sc">{</span><span class="bu">len</span>(df_XmCli)<span class="sc">:,}</span><span class="ss"> filas)"</span>)</span>
 <span id="cb13-32"><a href="#cb13-32" aria-hidden="true" tabindex="-1"></a></span>
@@ -671,7 +671,7 @@ Name: count, dtype: int64
 <span id="cb13-34"><a href="#cb13-34" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">"</span> <span class="op">+</span> <span class="st">"="</span><span class="op">*</span><span class="dv">60</span>)</span>
 <span id="cb13-35"><a href="#cb13-35" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"✅ TABLAS GUARDADAS CORRECTAMENTE"</span>)</span>
 <span id="cb13-36"><a href="#cb13-36" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"="</span><span class="op">*</span><span class="dv">60</span>)</span>
-<span id="cb13-37"><a href="#cb13-37" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">📁 Ubicación: data/processed/"</span>)</span>
+<span id="cb13-37"><a href="#cb13-37" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st"> Ubicación: data/processed/"</span>)</span>
 <span id="cb13-38"><a href="#cb13-38" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Archivos generados:"</span>)</span>
 <span id="cb13-39"><a href="#cb13-39" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"   • produccion_enriquecida.parquet"</span>)</span>
 <span id="cb13-40"><a href="#cb13-40" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"   • ventas_enriquecidas.parquet"</span>)</span>
@@ -683,26 +683,26 @@ Name: count, dtype: int64
 <pre><code>GUARDANDO TABLAS ENRIQUECIDAS
 ============================================================
 
-📊 1. Guardando producción enriquecida...
+ 1. Guardando producción enriquecida...
    ✅ produccion_enriquecida.parquet (14,986 filas, 15 columnas)
 
-📊 2. Guardando ventas enriquecidas...
+ 2. Guardando ventas enriquecidas...
    ✅ ventas_enriquecidas.parquet (41,461 filas, 57 columnas)
 
-📊 3. Guardando calendario normal...
+ 3. Guardando calendario normal...
    ✅ calendario_normal.parquet (1,018 días)
 
-📊 4. Guardando catálogo de productos...
+ 4. Guardando catálogo de productos...
    ✅ productos.parquet (11,473 filas)
 
-📊 5. Guardando catálogo de clientes...
+ 5. Guardando catálogo de clientes...
    ✅ clientes.parquet (1,841 filas)
 
 ============================================================
 ✅ TABLAS GUARDADAS CORRECTAMENTE
 ============================================================
 
-📁 Ubicación: data/processed/
+ Ubicación: data/processed/
 
 Archivos generados:
    • produccion_enriquecida.parquet

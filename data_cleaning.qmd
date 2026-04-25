@@ -30,7 +30,6 @@ import pandas as pd
 from sqlalchemy import create_engine, text
 from datetime import datetime
 
-print("="*60)
 print("PROCESO DE LIMPIEZA Y PREPARACIÓN DE DATOS")
 print("="*60)
 
@@ -46,7 +45,7 @@ archivos_parquet = {
 todos_existen = all(os.path.exists(f) for f in archivos_parquet.values())
 
 if todos_existen:
-    print("\n✅ LOS DATOS YA ESTÁN PROCESADOS")
+    print("\n LOS DATOS YA ESTÁN PROCESADOS")
     print("   Cargando archivos .parquet existentes...")
     print("   (Para actualizar datos, borra la carpeta data/processed/ y vuelve a ejecutar)")
     
@@ -57,11 +56,11 @@ if todos_existen:
     df_ImRec = pd.read_parquet(archivos_parquet['productos'])
     df_XmCli = pd.read_parquet(archivos_parquet['clientes'])
     
-    print(f"\n   ✅ Producción: {len(df_produccion):,} filas")
-    print(f"   ✅ Ventas: {len(df_VdVen):,} filas")
-    print(f"   ✅ Calendario: {len(df_calendario_normal):,} días")
-    print(f"   ✅ Productos: {len(df_ImRec):,} filas")
-    print(f"   ✅ Clientes: {len(df_XmCli):,} filas")
+    print(f"\n  Producción: {len(df_produccion):,} filas")
+    print(f"    Ventas: {len(df_VdVen):,} filas")
+    print(f"    Calendario: {len(df_calendario_normal):,} días")
+    print(f"    Productos: {len(df_ImRec):,} filas")
+    print(f"    Clientes: {len(df_XmCli):,} filas")
     
     PROCESAR_DATOS = False
 else:
@@ -72,12 +71,12 @@ else:
 
 if not PROCESAR_DATOS:
     print("\n" + "="*60)
-    print("✅ DATOS CARGADOS DESDE ARCHIVOS EXISTENTES")
+    print(" DATOS CARGADOS DESDE ARCHIVOS EXISTENTES")
     print("="*60)
     print("   Continúa con las visualizaciones.")
 else:
     print("\n" + "="*60)
-    print("✅ DATOS PROCESADOS DESDE SQL SERVER")
+    print(" DATOS PROCESADOS DESDE SQL SERVER")
     print("="*60)
 
 ```
@@ -97,7 +96,7 @@ connection_string = (
     "?driver=SQL+Server"
 )
 engine = create_engine(connection_string)
-print("✅ Conexión establecida")
+print(" Conexión establecida")
 
 # 2. FUNCIÓN PARA CARGAR TABLAS
 def cargar_tabla(nombre_tabla, limite=None):
@@ -109,10 +108,10 @@ def cargar_tabla(nombre_tabla, limite=None):
             else:
                 query = text(f"SELECT * FROM [dbo].[{nombre_tabla}]")
             df = pd.read_sql(query, conn)
-            print(f"✅ {nombre_tabla}: {len(df):,} filas, {len(df.columns)} columnas")
+            print(f" {nombre_tabla}: {len(df):,} filas, {len(df.columns)} columnas")
             return df
     except Exception as e:
-        print(f"❌ Error en {nombre_tabla}: {e}")
+        print(f" Error en {nombre_tabla}: {e}")
         return None
 
 # 3. CARGAR TABLAS ORIGINALES
@@ -138,7 +137,7 @@ print("-"*40)
 df_ventas = df_VdVen.copy()
 df_ventas['fecha'] = pd.to_datetime(df_ventas['VdVenFec'], errors='coerce')
 df_ventas = df_ventas.dropna(subset=['fecha'])
-print(f"✅ Ventas: {len(df_ventas):,} filas con fecha")
+print(f" Ventas: {len(df_ventas):,} filas con fecha")
 
 ```
 
@@ -161,7 +160,7 @@ df_calendario_normal = pd.DataFrame({
     'trimestre': pd.date_range(start=fecha_min, end=fecha_max, freq='D').quarter,
 })
 
-print(f"✅ Calendario Normal: {len(df_calendario_normal):,} días")
+print(f" Calendario Normal: {len(df_calendario_normal):,} días")
 ```
 
 # 5. Enriquecer tabla de Ventas
@@ -176,9 +175,9 @@ print("\n 1. Agregando zona de cliente (XmZonCod)...")
 if 'AmScnCod' in df_VdVen.columns and 'AmScnCod' in df_XmCli.columns and 'XmZonCod' in df_XmCli.columns:
     zona_map = df_XmCli.set_index('AmScnCod')['XmZonCod'].to_dict()
     df_VdVen['XmZonCod'] = df_VdVen['AmScnCod'].map(zona_map)
-    print(f"   ✅ Zona asignada correctamente")
+    print(f"    Zona asignada correctamente")
 else:
-    print("   ⚠️ No se pudo agregar zona")
+    print("    No se pudo agregar zona")
 
 # 2. Agregar campos desde ImRec
 print("\n 2. Agregando campos desde ImRec...")
@@ -197,9 +196,9 @@ if len(columnas_existentes) > 1:
         on='ImRecCod',
         how='left'
     )
-    print(f"   ✅ Merge completado. Nuevas columnas agregadas.")
+    print(f"    Merge completado. Nuevas columnas agregadas.")
 else:
-    print(f"   ⚠️ No hay columnas para traer")
+    print(f"    No hay columnas para traer")
 
 # Ajustar cantidades por reglas de negocio
 def aj_cantidad(row):
@@ -223,9 +222,9 @@ print("\n 3. Verificando columnas para Ventas_m3...")
 columnas_necesarias = ['VdVenCanAj', 'ImRecLrg', 'ImRecAnc', 'ImRecAlt']
 for col in columnas_necesarias:
     if col in df_VdVen.columns:
-        print(f"   ✅ {col} existe")
+        print(f"    {col} existe")
     else:
-        print(f"   ❌ {col} NO existe")
+        print(f"    {col} NO existe")
 
 # 4. Calcular Ventas_m3 (solo si todas las columnas existen)
 if all(col in df_VdVen.columns for col in columnas_necesarias):
@@ -235,10 +234,10 @@ if all(col in df_VdVen.columns for col in columnas_necesarias):
         df_VdVen['ImRecAnc'].fillna(1) * 
         df_VdVen['ImRecAlt'].fillna(1)
     ) / 1000
-    print(f"\n   ✅ Ventas_m3 calculada")
+    print(f"\n    Ventas_m3 calculada")
     print(f"    Total: {df_VdVen['Ventas_m3'].sum():,.2f}")
 else:
-    print(f"\n   ⚠️ No se puede calcular Ventas_m3. Faltan columnas.")
+    print(f"\n    No se puede calcular Ventas_m3. Faltan columnas.")
 
 # 5. Vista previa
 print("\n Vista previa (primeras 3 filas):")
@@ -266,7 +265,7 @@ df_produccion = df_IdInv.groupby('IdInvGuia').agg(
 
 # Eliminar guías nulas
 df_produccion = df_produccion.dropna(subset=['IdInvGuia'])
-print(f"   ✅ Guías únicas: {len(df_produccion):,}")
+print(f"    Guías únicas: {len(df_produccion):,}")
 
 # 2. Unir con PdGuia para obtener fecha
 print("\n 2. Uniendo con PdGuia para obtener fecha...")
@@ -278,7 +277,7 @@ df_produccion = df_produccion.merge(
 )
 df_produccion['fecha'] = pd.to_datetime(df_produccion['PdGuiaFch'], errors='coerce')
 df_produccion = df_produccion.dropna(subset=['fecha'])
-print(f"   ✅ Con fecha válida: {len(df_produccion):,} filas")
+print(f"    Con fecha válida: {len(df_produccion):,} filas")
 
 # 3. Unir con ImRec para dimensiones
 print("\n 3. Uniendo con ImRec para dimensiones...")
@@ -287,7 +286,7 @@ df_produccion = df_produccion.merge(
     on='ImRecCod',
     how='left'
 )
-print(f"   ✅ Dimensiones agregadas")
+print(f"    Dimensiones agregadas")
 
 # 4. Calcular Prod_m3
 print("\n 4. Calculando Prod_m3...")
@@ -298,7 +297,7 @@ df_produccion['Prod_m3'] = (
     df_produccion['ImRecAlt'].fillna(1)
 ) / 1000
 
-print(f"\n   ✅ Prod_m3 calculado")
+print(f"\n    Prod_m3 calculado")
 print(f"    Total: {df_produccion['Prod_m3'].sum():,.2f} m³")
 print(f"    Prod_m3 negativo: {(df_produccion['Prod_m3'] < 0).sum():,}")
 
@@ -316,7 +315,7 @@ def calcular_turno(fecha_guia):
 
 if 'PdGuiaFch' in df_produccion.columns:
     df_produccion['Turno'] = df_produccion['PdGuiaFch'].apply(calcular_turno)
-    print(f"   ✅ Turno calculado")
+    print(f"    Turno calculado")
     print(f"       Distribución:")
     print(df_produccion['Turno'].value_counts())
 
@@ -326,7 +325,7 @@ columnas_ver = ['fecha', 'IdInvGuia', 'ImRecCod', 'IdInvCan_sum', 'Prod_m3', 'Tu
 columnas_existentes = [col for col in columnas_ver if col in df_produccion.columns]
 print(df_produccion[columnas_existentes].head(3))
 
-print("\n✅ Producción enriquecida completada")
+print("\n Producción enriquecida completada")
 
 ```
 
@@ -343,32 +342,32 @@ os.makedirs('data/processed', exist_ok=True)
 # 1. Guardar producción enriquecida
 print("\n 1. Guardando producción enriquecida...")
 df_produccion.to_parquet('data/processed/produccion_enriquecida.parquet', index=False)
-print(f"   ✅ produccion_enriquecida.parquet ({len(df_produccion):,} filas, {len(df_produccion.columns)} columnas)")
+print(f"    produccion_enriquecida.parquet ({len(df_produccion):,} filas, {len(df_produccion.columns)} columnas)")
 
 # 2. Guardar ventas enriquecidas
 print("\n 2. Guardando ventas enriquecidas...")
 df_VdVen.to_parquet('data/processed/ventas_enriquecidas.parquet', index=False)
-print(f"   ✅ ventas_enriquecidas.parquet ({len(df_VdVen):,} filas, {len(df_VdVen.columns)} columnas)")
+print(f"    ventas_enriquecidas.parquet ({len(df_VdVen):,} filas, {len(df_VdVen.columns)} columnas)")
 
 # 3. Guardar calendario normal
 print("\n 3. Guardando calendario normal...")
 df_calendario_normal.to_parquet('data/processed/calendario_normal.parquet', index=False)
-print(f"   ✅ calendario_normal.parquet ({len(df_calendario_normal):,} días)")
+print(f"    calendario_normal.parquet ({len(df_calendario_normal):,} días)")
 
 # 4. Guardar productos (ImRec) - opcional (como respaldo)
 print("\n 4. Guardando catálogo de productos...")
 df_ImRec.to_parquet('data/processed/productos.parquet', index=False)
-print(f"   ✅ productos.parquet ({len(df_ImRec):,} filas)")
+print(f"    productos.parquet ({len(df_ImRec):,} filas)")
 
 # 5. Guardar clientes - opcional
 if 'df_XmCli' in locals():
     print("\n 5. Guardando catálogo de clientes...")
     df_XmCli.to_parquet('data/processed/clientes.parquet', index=False)
-    print(f"   ✅ clientes.parquet ({len(df_XmCli):,} filas)")
+    print(f"    clientes.parquet ({len(df_XmCli):,} filas)")
 
 # Mostrar resumen
 print("\n" + "="*60)
-print("✅ TABLAS GUARDADAS CORRECTAMENTE")
+print(" TABLAS GUARDADAS CORRECTAMENTE")
 print("="*60)
 print("\n Ubicación: data/processed/")
 print("\nArchivos generados:")

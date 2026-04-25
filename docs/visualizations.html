@@ -62,6 +62,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" integrity="sha384-ZvpUoO/+PpLXR1lu4jmpXWu80pZlYUAfxl5NsBMWOEPSjUn/6Z/hRTt8+pR6L4N2" crossorigin="anonymous"></script><script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
 <script src="site_libs/clipboard/clipboard.min.js"></script>
 <script src="site_libs/quarto-search/autocomplete.umd.js"></script>
 <script src="site_libs/quarto-search/fuse.min.js"></script>
@@ -78,11 +79,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="site_libs/bootstrap/bootstrap-a0f9fd0d421825b736dc1bbcbcba2219.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
-  "location": "sidebar",
+  "location": "navbar",
   "copy-button": false,
   "collapse-after": 3,
-  "panel-placement": "start",
-  "type": "textbox",
+  "panel-placement": "end",
+  "type": "overlay",
   "limit": 50,
   "keyboard-shortcut": [
     "f",
@@ -111,11 +112,44 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </head>
 
-<body class="quarto-light">
+<body class="nav-fixed quarto-light">
 
 <div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">Dashboard</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="./index.html"> 
+<span class="menu-text">Inicio</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link active" href="./visualizations.html" aria-current="page"> 
+<span class="menu-text">Visualizaciones</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./data_cleaning.html"> 
+<span class="menu-text">Limpieza de Datos</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
@@ -156,7 +190,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<div id="287db715" class="cell" data-execution_count="1">
+<div id="ef4930a8" class="cell" data-execution_count="1">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
@@ -171,7 +205,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <section id="cómo-evolucionan-la-producción-y-las-ventas-en-el-tiempo-1" class="level1" data-number="1">
 <h1 data-number="1"><span class="header-section-number">1</span> 1.1 ¿Cómo evolucionan la producción y las ventas en el tiempo? (1)</h1>
-<div id="206325c6" class="cell" data-execution_count="2">
+<div id="6cdbc37e" class="cell" data-execution_count="2">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Agrupar producción por mes </span></span>
@@ -205,26 +239,26 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>bars <span class="op">+</span> linea</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="29">
+<div class="cell-output cell-output-display" data-execution_count="2">
 
 <style>
-  #altair-viz-5529bffbfec54adfb3dcf97a70fa4336.vega-embed {
+  #altair-viz-cef14e897b234bfc93a7950025c736ae.vega-embed {
     width: 100%;
     display: flex;
   }
 
-  #altair-viz-5529bffbfec54adfb3dcf97a70fa4336.vega-embed details,
-  #altair-viz-5529bffbfec54adfb3dcf97a70fa4336.vega-embed details summary {
+  #altair-viz-cef14e897b234bfc93a7950025c736ae.vega-embed details,
+  #altair-viz-cef14e897b234bfc93a7950025c736ae.vega-embed details summary {
     position: relative;
   }
 </style>
-<div id="altair-viz-5529bffbfec54adfb3dcf97a70fa4336"></div>
+<div id="altair-viz-cef14e897b234bfc93a7950025c736ae"></div>
 <script type="text/javascript">
   var VEGA_DEBUG = (typeof VEGA_DEBUG == "undefined") ? {} : VEGA_DEBUG;
   (function(spec, embedOpt){
     let outputDiv = document.currentScript.previousElementSibling;
-    if (outputDiv.id !== "altair-viz-5529bffbfec54adfb3dcf97a70fa4336") {
-      outputDiv = document.getElementById("altair-viz-5529bffbfec54adfb3dcf97a70fa4336");
+    if (outputDiv.id !== "altair-viz-cef14e897b234bfc93a7950025c736ae") {
+      outputDiv = document.getElementById("altair-viz-cef14e897b234bfc93a7950025c736ae");
     }
 
     const paths = {
@@ -279,7 +313,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="cómo-evolucionan-la-producción-y-las-ventas-en-el-tiempo-2" class="level1" data-number="2">
 <h1 data-number="2"><span class="header-section-number">2</span> 1.2 ¿Cómo evolucionan la producción y las ventas en el tiempo? (2)</h1>
-<div id="fbee944f" class="cell" data-execution_count="3">
+<div id="bfda6f87" class="cell" data-execution_count="3">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>df_ventas <span class="op">=</span> ventas[ventas[<span class="st">'fecha'</span>] <span class="op">&gt;=</span> <span class="st">'2024-07-01'</span>].copy()</span>
@@ -298,26 +332,26 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>bars <span class="op">+</span> linea</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="30">
+<div class="cell-output cell-output-display" data-execution_count="3">
 
 <style>
-  #altair-viz-ed82f9805f404c35800bb9c9ab0c77e1.vega-embed {
+  #altair-viz-804a27a48ac840e5b2b6901b5439f80b.vega-embed {
     width: 100%;
     display: flex;
   }
 
-  #altair-viz-ed82f9805f404c35800bb9c9ab0c77e1.vega-embed details,
-  #altair-viz-ed82f9805f404c35800bb9c9ab0c77e1.vega-embed details summary {
+  #altair-viz-804a27a48ac840e5b2b6901b5439f80b.vega-embed details,
+  #altair-viz-804a27a48ac840e5b2b6901b5439f80b.vega-embed details summary {
     position: relative;
   }
 </style>
-<div id="altair-viz-ed82f9805f404c35800bb9c9ab0c77e1"></div>
+<div id="altair-viz-804a27a48ac840e5b2b6901b5439f80b"></div>
 <script type="text/javascript">
   var VEGA_DEBUG = (typeof VEGA_DEBUG == "undefined") ? {} : VEGA_DEBUG;
   (function(spec, embedOpt){
     let outputDiv = document.currentScript.previousElementSibling;
-    if (outputDiv.id !== "altair-viz-ed82f9805f404c35800bb9c9ab0c77e1") {
-      outputDiv = document.getElementById("altair-viz-ed82f9805f404c35800bb9c9ab0c77e1");
+    if (outputDiv.id !== "altair-viz-804a27a48ac840e5b2b6901b5439f80b") {
+      outputDiv = document.getElementById("altair-viz-804a27a48ac840e5b2b6901b5439f80b");
     }
 
     const paths = {
@@ -372,7 +406,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="cómo-evolucionan-la-producción-y-las-ventas-en-el-tiempo-3" class="level1" data-number="3">
 <h1 data-number="3"><span class="header-section-number">3</span> 1.3. ¿Cómo evolucionan la producción y las ventas en el tiempo? (3)</h1>
-<div id="d2fb37e3" class="cell" data-execution_count="4">
+<div id="ee25ef81" class="cell" data-execution_count="4">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Ver si existen registros con esas condiciones</span></span>
@@ -399,26 +433,26 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>    tooltip<span class="op">=</span>[<span class="st">'mes:N'</span>, <span class="st">'Tipo:N'</span>, alt.Tooltip(<span class="st">'Volumen:Q'</span>, <span class="bu">format</span><span class="op">=</span><span class="st">'.0f'</span>)]</span>
 <span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>).properties(title<span class="op">=</span><span class="st">'Producción vs Ventas (m³)'</span>, width<span class="op">=</span><span class="dv">700</span>, height<span class="op">=</span><span class="dv">400</span>).interactive()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="31">
+<div class="cell-output cell-output-display" data-execution_count="4">
 
 <style>
-  #altair-viz-079a945f1e334f39bb13befbd4bb6dc4.vega-embed {
+  #altair-viz-3361acf9857f41cd86ef53ba3ac1b3d7.vega-embed {
     width: 100%;
     display: flex;
   }
 
-  #altair-viz-079a945f1e334f39bb13befbd4bb6dc4.vega-embed details,
-  #altair-viz-079a945f1e334f39bb13befbd4bb6dc4.vega-embed details summary {
+  #altair-viz-3361acf9857f41cd86ef53ba3ac1b3d7.vega-embed details,
+  #altair-viz-3361acf9857f41cd86ef53ba3ac1b3d7.vega-embed details summary {
     position: relative;
   }
 </style>
-<div id="altair-viz-079a945f1e334f39bb13befbd4bb6dc4"></div>
+<div id="altair-viz-3361acf9857f41cd86ef53ba3ac1b3d7"></div>
 <script type="text/javascript">
   var VEGA_DEBUG = (typeof VEGA_DEBUG == "undefined") ? {} : VEGA_DEBUG;
   (function(spec, embedOpt){
     let outputDiv = document.currentScript.previousElementSibling;
-    if (outputDiv.id !== "altair-viz-079a945f1e334f39bb13befbd4bb6dc4") {
-      outputDiv = document.getElementById("altair-viz-079a945f1e334f39bb13befbd4bb6dc4");
+    if (outputDiv.id !== "altair-viz-3361acf9857f41cd86ef53ba3ac1b3d7") {
+      outputDiv = document.getElementById("altair-viz-3361acf9857f41cd86ef53ba3ac1b3d7");
     }
 
     const paths = {
@@ -474,7 +508,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="cómo-evolucionan-la-producción-y-las-ventas-en-el-tiempo-4" class="level1" data-number="4">
 <h1 data-number="4"><span class="header-section-number">4</span> 1.4. ¿Cómo evolucionan la producción y las ventas en el tiempo? (4)</h1>
-<div id="c745aabb" class="cell" data-execution_count="5">
+<div id="0da45316" class="cell" data-execution_count="5">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Producción</span></span>
@@ -508,26 +542,26 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a>bars <span class="op">+</span> linea</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="32">
+<div class="cell-output cell-output-display" data-execution_count="5">
 
 <style>
-  #altair-viz-0ce396838f184650ab21062cdd130626.vega-embed {
+  #altair-viz-7e21437ba54d49799039c742c343b17e.vega-embed {
     width: 100%;
     display: flex;
   }
 
-  #altair-viz-0ce396838f184650ab21062cdd130626.vega-embed details,
-  #altair-viz-0ce396838f184650ab21062cdd130626.vega-embed details summary {
+  #altair-viz-7e21437ba54d49799039c742c343b17e.vega-embed details,
+  #altair-viz-7e21437ba54d49799039c742c343b17e.vega-embed details summary {
     position: relative;
   }
 </style>
-<div id="altair-viz-0ce396838f184650ab21062cdd130626"></div>
+<div id="altair-viz-7e21437ba54d49799039c742c343b17e"></div>
 <script type="text/javascript">
   var VEGA_DEBUG = (typeof VEGA_DEBUG == "undefined") ? {} : VEGA_DEBUG;
   (function(spec, embedOpt){
     let outputDiv = document.currentScript.previousElementSibling;
-    if (outputDiv.id !== "altair-viz-0ce396838f184650ab21062cdd130626") {
-      outputDiv = document.getElementById("altair-viz-0ce396838f184650ab21062cdd130626");
+    if (outputDiv.id !== "altair-viz-7e21437ba54d49799039c742c343b17e") {
+      outputDiv = document.getElementById("altair-viz-7e21437ba54d49799039c742c343b17e");
     }
 
     const paths = {
@@ -582,7 +616,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="que-tipo-de-producto-se-fabrica-predominantemente-en-cada-turno" class="level1" data-number="5">
 <h1 data-number="5"><span class="header-section-number">5</span> 2. ¿Que tipo de producto se fabrica predominantemente en cada turno?</h1>
-<div id="592a2379" class="cell" data-execution_count="6">
+<div id="e0f340c5" class="cell" data-execution_count="6">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Preparar datos</span></span>
@@ -614,26 +648,26 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a>    height<span class="op">=</span><span class="dv">400</span></span>
 <span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="33">
+<div class="cell-output cell-output-display" data-execution_count="6">
 
 <style>
-  #altair-viz-44394f3315304175962f8d9a559dd589.vega-embed {
+  #altair-viz-6bd679cc72b54cd8ad91d41c44d06e75.vega-embed {
     width: 100%;
     display: flex;
   }
 
-  #altair-viz-44394f3315304175962f8d9a559dd589.vega-embed details,
-  #altair-viz-44394f3315304175962f8d9a559dd589.vega-embed details summary {
+  #altair-viz-6bd679cc72b54cd8ad91d41c44d06e75.vega-embed details,
+  #altair-viz-6bd679cc72b54cd8ad91d41c44d06e75.vega-embed details summary {
     position: relative;
   }
 </style>
-<div id="altair-viz-44394f3315304175962f8d9a559dd589"></div>
+<div id="altair-viz-6bd679cc72b54cd8ad91d41c44d06e75"></div>
 <script type="text/javascript">
   var VEGA_DEBUG = (typeof VEGA_DEBUG == "undefined") ? {} : VEGA_DEBUG;
   (function(spec, embedOpt){
     let outputDiv = document.currentScript.previousElementSibling;
-    if (outputDiv.id !== "altair-viz-44394f3315304175962f8d9a559dd589") {
-      outputDiv = document.getElementById("altair-viz-44394f3315304175962f8d9a559dd589");
+    if (outputDiv.id !== "altair-viz-6bd679cc72b54cd8ad91d41c44d06e75") {
+      outputDiv = document.getElementById("altair-viz-6bd679cc72b54cd8ad91d41c44d06e75");
     }
 
     const paths = {
@@ -689,7 +723,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="qué-productos-son-los-más-producidos-y-vendidos" class="level1" data-number="6">
 <h1 data-number="6"><span class="header-section-number">6</span> 3. ¿Qué productos son los más producidos y vendidos?</h1>
-<div id="64933520" class="cell" data-execution_count="7">
+<div id="40ef1145" class="cell" data-execution_count="7">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Datos de producción y ventas por SKU (top 20)</span></span>
@@ -717,26 +751,26 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a>    height<span class="op">=</span><span class="dv">500</span></span>
 <span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a>) <span class="op">+</span> alt.Chart(pd.DataFrame({<span class="st">'x'</span>: [<span class="dv">0</span>, <span class="dv">2000</span>], <span class="st">'y'</span>: [<span class="dv">0</span>, <span class="dv">2000</span>]})).mark_line(color<span class="op">=</span><span class="st">'gray'</span>, strokeDash<span class="op">=</span>[<span class="dv">4</span>, <span class="dv">4</span>]).encode(x<span class="op">=</span><span class="st">'x:Q'</span>, y<span class="op">=</span><span class="st">'y:Q'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="34">
+<div class="cell-output cell-output-display" data-execution_count="7">
 
 <style>
-  #altair-viz-a73c73af526b4a5ab9752dad674fd049.vega-embed {
+  #altair-viz-0870e1ce268b4ffc9c78d006132044f6.vega-embed {
     width: 100%;
     display: flex;
   }
 
-  #altair-viz-a73c73af526b4a5ab9752dad674fd049.vega-embed details,
-  #altair-viz-a73c73af526b4a5ab9752dad674fd049.vega-embed details summary {
+  #altair-viz-0870e1ce268b4ffc9c78d006132044f6.vega-embed details,
+  #altair-viz-0870e1ce268b4ffc9c78d006132044f6.vega-embed details summary {
     position: relative;
   }
 </style>
-<div id="altair-viz-a73c73af526b4a5ab9752dad674fd049"></div>
+<div id="altair-viz-0870e1ce268b4ffc9c78d006132044f6"></div>
 <script type="text/javascript">
   var VEGA_DEBUG = (typeof VEGA_DEBUG == "undefined") ? {} : VEGA_DEBUG;
   (function(spec, embedOpt){
     let outputDiv = document.currentScript.previousElementSibling;
-    if (outputDiv.id !== "altair-viz-a73c73af526b4a5ab9752dad674fd049") {
-      outputDiv = document.getElementById("altair-viz-a73c73af526b4a5ab9752dad674fd049");
+    if (outputDiv.id !== "altair-viz-0870e1ce268b4ffc9c78d006132044f6") {
+      outputDiv = document.getElementById("altair-viz-0870e1ce268b4ffc9c78d006132044f6");
     }
 
     const paths = {
@@ -792,7 +826,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="qué-zonas-del-país-son-las-de-mayor-venta" class="level1" data-number="7">
 <h1 data-number="7"><span class="header-section-number">7</span> 4.1 ¿Qué zonas del país son las de mayor venta?</h1>
-<div id="996f87b3" class="cell" data-execution_count="8">
+<div id="d2c86d82" class="cell" data-execution_count="8">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>df_ventas <span class="op">=</span> ventas[ventas[<span class="st">'fecha'</span>] <span class="op">&gt;=</span> <span class="st">'2024-07-01'</span>].copy()</span>
@@ -811,26 +845,26 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>    height<span class="op">=</span><span class="dv">300</span></span>
 <span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="35">
+<div class="cell-output cell-output-display" data-execution_count="8">
 
 <style>
-  #altair-viz-2dd9ea66941c448c9e4fe55c47e1e190.vega-embed {
+  #altair-viz-626bf1c2098741d3aef1cac8dd360451.vega-embed {
     width: 100%;
     display: flex;
   }
 
-  #altair-viz-2dd9ea66941c448c9e4fe55c47e1e190.vega-embed details,
-  #altair-viz-2dd9ea66941c448c9e4fe55c47e1e190.vega-embed details summary {
+  #altair-viz-626bf1c2098741d3aef1cac8dd360451.vega-embed details,
+  #altair-viz-626bf1c2098741d3aef1cac8dd360451.vega-embed details summary {
     position: relative;
   }
 </style>
-<div id="altair-viz-2dd9ea66941c448c9e4fe55c47e1e190"></div>
+<div id="altair-viz-626bf1c2098741d3aef1cac8dd360451"></div>
 <script type="text/javascript">
   var VEGA_DEBUG = (typeof VEGA_DEBUG == "undefined") ? {} : VEGA_DEBUG;
   (function(spec, embedOpt){
     let outputDiv = document.currentScript.previousElementSibling;
-    if (outputDiv.id !== "altair-viz-2dd9ea66941c448c9e4fe55c47e1e190") {
-      outputDiv = document.getElementById("altair-viz-2dd9ea66941c448c9e4fe55c47e1e190");
+    if (outputDiv.id !== "altair-viz-626bf1c2098741d3aef1cac8dd360451") {
+      outputDiv = document.getElementById("altair-viz-626bf1c2098741d3aef1cac8dd360451");
     }
 
     const paths = {
@@ -885,7 +919,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="qué-productos-se-venden-más-en-cada-zona" class="level1" data-number="8">
 <h1 data-number="8"><span class="header-section-number">8</span> 4.2 ¿Qué productos se venden más en cada zona?</h1>
-<div id="27fa83ff" class="cell" data-execution_count="9">
+<div id="c6b87995" class="cell" data-execution_count="9">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>df_ventas <span class="op">=</span> ventas[ventas[<span class="st">'fecha'</span>] <span class="op">&gt;=</span> <span class="st">'2024-07-01'</span>].copy()</span>
@@ -912,26 +946,26 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a>    height<span class="op">=</span><span class="dv">400</span></span>
 <span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="36">
+<div class="cell-output cell-output-display" data-execution_count="9">
 
 <style>
-  #altair-viz-76ea99f5eec74dbf9cece11f2c8e7eca.vega-embed {
+  #altair-viz-3ea524c21977402787f1fcf935bc0466.vega-embed {
     width: 100%;
     display: flex;
   }
 
-  #altair-viz-76ea99f5eec74dbf9cece11f2c8e7eca.vega-embed details,
-  #altair-viz-76ea99f5eec74dbf9cece11f2c8e7eca.vega-embed details summary {
+  #altair-viz-3ea524c21977402787f1fcf935bc0466.vega-embed details,
+  #altair-viz-3ea524c21977402787f1fcf935bc0466.vega-embed details summary {
     position: relative;
   }
 </style>
-<div id="altair-viz-76ea99f5eec74dbf9cece11f2c8e7eca"></div>
+<div id="altair-viz-3ea524c21977402787f1fcf935bc0466"></div>
 <script type="text/javascript">
   var VEGA_DEBUG = (typeof VEGA_DEBUG == "undefined") ? {} : VEGA_DEBUG;
   (function(spec, embedOpt){
     let outputDiv = document.currentScript.previousElementSibling;
-    if (outputDiv.id !== "altair-viz-76ea99f5eec74dbf9cece11f2c8e7eca") {
-      outputDiv = document.getElementById("altair-viz-76ea99f5eec74dbf9cece11f2c8e7eca");
+    if (outputDiv.id !== "altair-viz-3ea524c21977402787f1fcf935bc0466") {
+      outputDiv = document.getElementById("altair-viz-3ea524c21977402787f1fcf935bc0466");
     }
 
     const paths = {

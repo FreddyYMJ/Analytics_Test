@@ -3,10 +3,26 @@ project:
   type: website
   output-dir: docs
 
+website:
+  navbar:
+    title: "Dashboard"
+    left:
+      - text: "Inicio"
+        href: index.html
+      - text: "Visualizaciones"
+        href: visualizations.html
+      - text: "Limpieza de Datos"
+        href: data_cleaning.html
+
 format:
   html:
     theme: cosmo
     toc: true
+
+
+
+
+
 
 
 

@@ -1,0 +1,66 @@
+---
+# Introducción 🔥🔥🔥 CAMBIO VISIBLE - 24 ABRIL 2026 🔥🔥🔥
+title: "Análisis de Producción y Ventas - Codesa"
+format: 
+  html:
+    toc: true
+    toc-depth: 2
+    number-sections: true
+    theme: cosmo
+    code-fold: true
+execute:
+  echo: false
+  eval: false
+---
+
+# Introducción
+
+## Contexto del Problema
+
+En la empresa **XXXX**, la producción y ventas son dos áreas críticas que operan de forma interconectada. Sin embargo, la información se encuentra dispersa en diferentes tablas de una base de datos SQL Server, lo que dificulta obtener una visión integrada del negocio.
+
+Este proyecto tiene como objetivo **unificar y visualizar** los datos de producción y ventas para facilitar la toma de decisiones estratégicas.
+
+## Motivación
+
+Este trabajo surge de dos necesidades:
+
+1. **Académica**: Proyecto final para la materia de Visualización de Datos, aplicando conceptos de craga de datos-limpieza, transformación y diseño visual.
+2. **Empresarial**: Esta herramienta debe servir como complemento a la aplicación Qlik Sense para reforzar el análisis de toda la Operación.
+
+## Preguntas Analíticas
+
+El proyecto busca responder:
+
+| # | Pregunta | ¿Qué mide? |
+|---|----------|-------------|
+| 1 | ¿Cómo evolucionan la producción y las ventas en el tiempo? | Tendencia temporal |
+| 2 | ¿Qué periodos tienen mejor desempeño? | Rendimiento por periodo |
+| 3 | ¿Qué productos son los más producidos y los más vendidos? | Detalle por producto |
+| 4 | ¿Qué zonas del país son las de mayor venta? | Detalle por producto |
+
+
+## Dataset Utilizado
+
+Los datos provienen de la base de datos **prod_XXXX** (SQL Server) y comprenden:
+
+| Tabla | Filas | Descripción |
+|-------|-------|-------------|
+| `IdInv` | 362,669 | Movimientos de inventario (producción) |
+| `VdVen` | 41,066 | Transacciones de ventas |
+| `ImRec` | 11,471 | Catálogo de productos |
+| `PdGuia` | 14,841 | Guías de producción |
+| `XmCli` | 1,831 | Catálogo de clientes |
+| `XcCxC` | 47,673 | Cuentas por cobrar |
+
+## Estructura del Sitio
+
+- **[Limpieza de Datos](data_cleaning.html)**: Proceso completo de transformación desde SQL Server hasta archivos Parquet.
+- **[Visualizaciones](visualizations.html)**: Gráficos interactivos que responden las preguntas analíticas.
+
+## Tecnologías Utilizadas
+
+- **Python** (pandas, sqlalchemy)
+- **Quarto** (generación de sitio web)
+- **Altair** (visualizaciones interactivas)
+- **GitHub Pages** (despliegue)

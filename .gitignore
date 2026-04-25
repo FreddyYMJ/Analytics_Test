@@ -1,0 +1,26 @@
+# Entorno virtual
+venv/
+env/
+ENV/
+
+# Datos grandes
+data/
+*.parquet
+*.csv
+
+# Archivos temporales de Python
+__pycache__/
+*.pyc
+*.pyo
+
+# Archivos de Quarto
+.quarto/
+*.log
+
+# IDE
+.vscode/
+.idea/
+
+# Sistema
+.DS_Store
+Thumbs.db

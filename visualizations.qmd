@@ -1,0 +1,323 @@
+---
+title: "Análisis Visual - Producción y Ventas"
+format: 
+  html:
+    toc: true
+    toc-depth: 2
+    number-sections: true
+    theme: cosmo
+    code-fold: true
+    navbar:
+      title: "Dashboard"
+      left:
+        - text: "Inicio"
+          href: index.html
+        - text: "Visualizaciones"
+          href: visualizations.html
+        - text: "Limpieza de Datos"
+          href: data_cleaning.html
+execute:
+  echo: true
+  eval: true
+---
+
+```{python}
+import pandas as pd
+import altair as alt
+
+produccion = pd.read_parquet('data/processed/produccion_enriquecida.parquet')
+ventas = pd.read_parquet('data/processed/ventas_enriquecidas.parquet')
+
+produccion['fecha'] = pd.to_datetime(produccion['fecha'])
+ventas['fecha'] = pd.to_datetime(ventas['VdVenFec'])
+```
+
+
+# 1.1 ¿Cómo evolucionan la producción y las ventas en el tiempo? (1)
+
+```{python}
+
+# Agrupar producción por mes 
+
+produccion_filtrada = produccion[produccion['fecha'] >= '2024-07-01'].copy()
+
+# Agrupar por mes
+
+produccion_filtrada['mes'] = produccion_filtrada['fecha'].dt.strftime('%Y-%m')
+prod_mensual = produccion_filtrada.groupby('mes')['Prod_m3'].sum().reset_index()
+
+# Agregar columna de color condicional
+prod_mensual['color'] = prod_mensual['Prod_m3'].apply(lambda x: 'Verde' if x >= 1100 else 'Rojo')
+
+# Gráfico
+bars = alt.Chart(prod_mensual).mark_bar().encode(
+    x=alt.X('mes:N', title='Mes', sort=None),
+    y=alt.Y('Prod_m3:Q', title='Volumen Producido (m³)'),
+    color=alt.Color('color:N', scale=alt.Scale(domain=['Verde', 'Rojo'], range=['lightgreen', 'lightcoral']), legend=alt.Legend(title='Meta')),
+    tooltip=['mes:N', alt.Tooltip('Prod_m3:Q', format='.0f'), 'color:N']
+).properties(
+    title='Producción Mensual - Meta: 1,100 m³',
+    width=700,
+    height=400
+)
+
+# Línea de equilibrio
+linea = alt.Chart(pd.DataFrame({'y': [1100]})).mark_rule(color='black', strokeWidth=2, strokeDash=[6, 4]).encode(
+    y='y:Q'
+)
+
+bars + linea
+
+```
+# 1.2 ¿Cómo evolucionan la producción y las ventas en el tiempo? (2)
+```{python}
+
+df_ventas = ventas[ventas['fecha'] >= '2024-07-01'].copy()
+df_ventas['mes'] = df_ventas['fecha'].dt.strftime('%Y-%m')
+ventas_mensual = df_ventas.groupby('mes')['Ventas_m3'].sum().reset_index()
+ventas_mensual['color'] = ventas_mensual['Ventas_m3'].apply(lambda x: 'Verde' if x >= 1100 else 'Rojo')
+
+bars = alt.Chart(ventas_mensual).mark_bar().encode(
+    x=alt.X('mes:N', title='Mes', sort=None),
+    y=alt.Y('Ventas_m3:Q', title='Volumen (m³)'),
+    color=alt.Color('color:N', scale=alt.Scale(domain=['Verde', 'Rojo'], range=['lightgreen', 'lightcoral']), legend=alt.Legend(title='Meta')),
+    tooltip=['mes:N', alt.Tooltip('Ventas_m3:Q', format='.0f'), 'color:N']
+).properties(title='Ventas Mensuales - Meta: 1,100 m³', width=700, height=400)
+
+linea = alt.Chart(pd.DataFrame({'y': [1100]})).mark_rule(color='black', strokeWidth=2, strokeDash=[6, 4]).encode(y='y:Q')
+
+bars + linea
+```
+
+# 1.3. ¿Cómo evolucionan la producción y las ventas en el tiempo? (3)
+```{python}
+# Ver si existen registros con esas condiciones
+df_prod = produccion[produccion['fecha'] >= '2024-07-01'].copy()
+df_prod['mes'] = df_prod['fecha'].dt.strftime('%Y-%m')
+prod_mensual = df_prod.groupby('mes')['Prod_m3'].sum().reset_index()
+prod_mensual.rename(columns={'Prod_m3': 'Volumen'}, inplace=True)
+prod_mensual['Tipo'] = 'Producción'
+
+# Ventas (usando columna ajustada que ya está en el .parquet)
+df_ventas = ventas[ventas['fecha'] >= '2024-07-01'].copy()
+df_ventas['mes'] = df_ventas['fecha'].dt.strftime('%Y-%m')
+ventas_mensual = df_ventas.groupby('mes')['Ventas_m3'].sum().reset_index()
+ventas_mensual.rename(columns={'Ventas_m3': 'Volumen'}, inplace=True)
+ventas_mensual['Tipo'] = 'Ventas'
+
+# Combinar
+comparativa = pd.concat([prod_mensual, ventas_mensual])
+
+alt.Chart(comparativa).mark_line(strokeWidth=2, point=True).encode(
+    x=alt.X('mes:N', title='Mes', sort=None),
+    y=alt.Y('Volumen:Q', title='Volumen (m³)'),
+    color=alt.Color('Tipo:N', scale=alt.Scale(domain=['Producción', 'Ventas'], range=['steelblue', 'darkorange'])),
+    tooltip=['mes:N', 'Tipo:N', alt.Tooltip('Volumen:Q', format='.0f')]
+).properties(title='Producción vs Ventas (m³)', width=700, height=400).interactive()
+
+```
+
+Se puede ver que las ventas son ligeramente superiores a la producción, por cuanto hay un componente importante (15%) de producto que se importa para comercializar en el país. Adicional, la baja producción se explica por problemas en el suminisro de madera que cada vez es más dificil cosechar.
+
+# 1.4. ¿Cómo evolucionan la producción y las ventas en el tiempo? (4)
+```{python}
+
+# Producción
+df_prod = produccion[produccion['fecha'] >= '2024-07-01'].copy()
+df_prod['mes'] = df_prod['fecha'].dt.strftime('%Y-%m')
+prod_mensual = df_prod.groupby('mes')['Prod_m3'].sum().reset_index()
+prod_mensual.rename(columns={'Prod_m3': 'Volumen'}, inplace=True)
+prod_mensual['Tipo'] = 'Producción'
+
+# Ventas
+df_ventas = ventas[ventas['fecha'] >= '2024-07-01'].copy()
+df_ventas['mes'] = df_ventas['fecha'].dt.strftime('%Y-%m')
+ventas_mensual = df_ventas.groupby('mes')['Ventas_m3'].sum().reset_index()
+ventas_mensual.rename(columns={'Ventas_m3': 'Volumen'}, inplace=True)
+ventas_mensual['Tipo'] = 'Ventas'
+
+# Combinar
+comparativa = pd.concat([prod_mensual, ventas_mensual])
+
+# Gráfico de barras agrupadas (side by side)
+bars = alt.Chart(comparativa).mark_bar().encode(
+    x=alt.X('mes:N', title='Mes', sort=None),
+    y=alt.Y('Volumen:Q', title='Volumen (m³)'),
+    color=alt.Color('Tipo:N', scale=alt.Scale(domain=['Producción', 'Ventas'], range=['steelblue', 'orange'])),
+    tooltip=['mes:N', 'Tipo:N', alt.Tooltip('Volumen:Q', format='.0f')],
+    xOffset='Tipo:N'  # Esto pone las barras una al lado de la otra
+).properties(title='Producción vs Ventas Mensual (m³)', width=700, height=400)
+
+# Línea de meta
+linea = alt.Chart(pd.DataFrame({'y': [1100]})).mark_rule(color='black', strokeWidth=2, strokeDash=[6, 4]).encode(y='y:Q')
+
+bars + linea
+
+```
+
+# 2. ¿Que tipo de producto se fabrica predominantemente en cada turno?
+
+```{python}
+# Preparar datos
+df_heat = produccion[produccion['fecha'] >= '2024-07-01'].copy()
+df_heat = df_heat[df_heat['Turno'].notna()]
+df_heat = df_heat[df_heat['Prod_m3'] > 0]
+
+
+# Seleccionar top SKUs para que el gráfico no sea enorme
+top_skus = df_heat.groupby('ImRecCod')['Prod_m3'].sum().nlargest(10).index
+df_heat_top = df_heat[df_heat['ImRecCod'].isin(top_skus)]
+
+
+# Agrupar por turno y SKU
+heat_data = df_heat_top.groupby(['Turno', 'ImRecCod'])['Prod_m3'].sum().reset_index()
+
+
+# Heatmap
+alt.Chart(heat_data).mark_rect().encode(
+    x=alt.X('Turno:N', title='Turno'),
+    y=alt.Y('ImRecCod:N', title='SKU', sort='-x'),
+    color=alt.Color('Prod_m3:Q', title='Volumen (m³)', scale=alt.
+Scale(scheme='blues')),
+    tooltip=['Turno:N', 'ImRecCod:N', alt.Tooltip('Prod_m3:Q', 
+format='.0f')]
+).properties(
+    title='Volumen producido por Turno y SKU (Top 10 SKU)',
+    width=300,
+    height=400
+)
+
+
+```
+El gráfico muestra en que turnos es predominante la producción 
+de determiabdo SKU. Esto es importante conocerlo, por cuanto hay 
+tableros que tienen procesos diferentes de producción y esto 
+requiere tener consideraciones como:
+- Programar al personal técnico más capacitado, para ajustes 
+especiales de máquina
+-Tiempos de enfriamiento medidos dependiendo de si se requiere 
+su despacho urgente o no.
+
+# 3. ¿Qué productos son los más producidos y vendidos?
+
+```{python}
+# Datos de producción y ventas por SKU (top 20)
+df_prod = produccion[produccion['fecha'] >= '2025-01-01'].copy()
+prod_sku = df_prod.groupby('ImRecCod')['Prod_m3'].sum().reset_index()
+prod_sku.columns = ['SKU', 'Producción']
+
+df_ventas = ventas[ventas['fecha'] >= '2025-01-01'].copy()
+ventas_sku = df_ventas.groupby('ImRecCod')['Ventas_m3'].sum().reset_index()
+ventas_sku.columns = ['SKU', 'Ventas']
+
+# Combinar
+comparativa_sku = prod_sku.merge(ventas_sku, on='SKU', how='inner')
+comparativa_sku = comparativa_sku.nlargest(20, 'Producción')
+
+# Scatter plot
+alt.Chart(comparativa_sku).mark_circle(size=80).encode(
+    x=alt.X('Producción:Q', title='Volumen producido (m³)'),
+    y=alt.Y('Ventas:Q', title='Volumen vendido (m³)'),
+    color=alt.Color('SKU:N', legend=None),
+    tooltip=['SKU:N', 'Producción:Q', 'Ventas:Q']
+).properties(
+    title='Relación entre producción y ventas por SKU',
+    width=500,
+    height=500
+) + alt.Chart(pd.DataFrame({'x': [0, 2000], 'y': [0, 2000]})).mark_line(color='gray', strokeDash=[4, 4]).encode(x='x:Q', y='y:Q')
+
+```
+Este gráfico es muy importante por cuanto confirma que una muy buena relación entre los m3 producidos vs vendidos dando muestras de una buena planificación producción ventas llevando a la Operación a un modelo de make-to-order y así minimizar los niveles de inventario presentes. 
+
+# 4.1 ¿Qué zonas del país son las de mayor venta?
+
+```{python}
+
+df_ventas = ventas[ventas['fecha'] >= '2024-07-01'].copy()
+zonas = df_ventas.groupby('XmZonCod')['Ventas_m3'].sum().reset_index()
+zonas = zonas.sort_values('Ventas_m3', ascending=False)
+
+alt.Chart(zonas).mark_bar().encode(
+    x=alt.X('XmZonCod:N', title='Zona', sort='-y'),
+    y=alt.Y('Ventas_m3:Q', title='Volumen (m³)'),
+    color=alt.Color('XmZonCod:N', legend=None),
+    tooltip=['XmZonCod:N', alt.Tooltip('Ventas_m3:Q', 
+format='.0f')]
+).properties(
+    title='Ventas totales por zona (m³)',
+    width=400,
+    height=300
+)
+
+```
+# 4.2 ¿Qué productos se venden más en cada zona?
+```{python}
+
+df_ventas = ventas[ventas['fecha'] >= '2024-07-01'].copy()
+df_ventas = df_ventas[df_ventas['Ventas_m3'] > 0]
+
+# Seleccionar top SKUs (15 para que se vea bien)
+top_skus = df_ventas.groupby('ImRecCod')['Ventas_m3'].sum().nlargest(15).index
+df_heat = df_ventas[df_ventas['ImRecCod'].isin(top_skus)]
+
+# Agrupar por Zona y SKU
+heat_data = df_heat.groupby(['XmZonCod', 'ImRecCod'])['Ventas_m3'].sum().reset_index()
+
+# Heatmap
+alt.Chart(heat_data).mark_rect().encode(
+    x=alt.X('XmZonCod:N', title='Zona', sort='-y'),
+    y=alt.Y('ImRecCod:N', title='SKU', sort='-x'),
+    color=alt.Color('Ventas_m3:Q', title='Volumen (m³)', 
+scale=alt.Scale(scheme='blues')),
+    tooltip=['XmZonCod:N', 'ImRecCod:N', alt.Tooltip
+('Ventas_m3:Q', format='.0f')]
+).properties(
+    title='Productos más vendidos por zona',
+    width=400,
+    height=400
+)
+
+```
+
+El gráfico permite conocer que la zona del Litoral es la de mejor desempeño y que su producto estrella es el PE122244X18ST (tabkero estructural de 18 mm). Igualmente perite concoer que productosnson prewdominantes en otras zonas y de esta amnera poder orientar mejor la politica de precios, descuentos, promociones etc etc.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

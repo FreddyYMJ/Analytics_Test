@@ -31,7 +31,7 @@ from sqlalchemy import create_engine, text
 from datetime import datetime
 
 print("PROCESO DE LIMPIEZA Y PREPARACIÓN DE DATOS")
-print("="*60)
+print("-"*60)
 
 # Verificar si ya existen los .parquet enriquecidos
 archivos_parquet = {
@@ -66,16 +66,16 @@ if todos_existen:
 else:
     print("\n  PRIMERA VEZ O DATOS ACTUALIZADOS")
     print("   Conectando a SQL Server y procesando datos...")
-    print("   (Este proceso puede tomar varios minutos)")
+    
     PROCESAR_DATOS = True
 
 if not PROCESAR_DATOS:
-    print("\n" + "="*60)
+   
     print(" DATOS CARGADOS DESDE ARCHIVOS EXISTENTES")
     print("="*60)
     print("   Continúa con las visualizaciones.")
 else:
-    print("\n" + "="*60)
+   
     print(" DATOS PROCESADOS DESDE SQL SERVER")
     print("="*60)
 
@@ -168,7 +168,7 @@ Se agrega la zona del cliente y las dimensiones de cada producto (largo, ancho, 
 
 ```{python}
 print("ENRIQUECIENDO TABLA DE VENTAS")
-print("="*60)
+print("-"*60)
 
 # 1. Agregar zona desde XmCli
 print("\n 1. Agregando zona de cliente (XmZonCod)...")
@@ -253,7 +253,7 @@ print(df_VdVen[columnas_existentes].head(3))
 Se agrupa la producción por número de guía para evitar duplicados. Se agregan las dimensiones de cada producto y se calcula el volumen producido.
 ```{python}
 print("PRODUCCIÓN AGRUPADA POR GUÍA")
-print("="*60)
+print("-"*60)
 
 # 1. Agrupar producción por guía
 print("\n 1. Agrupando producción por guía...")
@@ -334,7 +334,7 @@ Se guardan las tablas ya procesadas en formato Parquet para usarlas en el dashbo
 
 ```{python}
 print("GUARDANDO TABLAS ENRIQUECIDAS")
-print("="*60)
+print("-"*60)
 
 # Crear carpeta si no existe
 os.makedirs('data/processed', exist_ok=True)

@@ -189,7 +189,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="limpieza-y-carga-de-datos" class="level1" data-number="1">
 <h1 data-number="1"><span class="header-section-number">1</span> 1. Limpieza y carga de datos</h1>
 <p>Se conecta al servidor SQL Server de la empresa usando credenciales de solo lectura.</p>
-<div id="bc462ad0" class="cell" data-execution_count="1">
+<div id="d8422fb0" class="cell" data-execution_count="1">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
@@ -198,7 +198,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> datetime <span class="im">import</span> datetime</span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"PROCESO DE LIMPIEZA Y PREPARACIÓN DE DATOS"</span>)</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"="</span><span class="op">*</span><span class="dv">60</span>)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"-"</span><span class="op">*</span><span class="dv">60</span>)</span>
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Verificar si ya existen los .parquet enriquecidos</span></span>
 <span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>archivos_parquet <span class="op">=</span> {</span>
@@ -233,34 +233,32 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
 <span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">  PRIMERA VEZ O DATOS ACTUALIZADOS"</span>)</span>
 <span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"   Conectando a SQL Server y procesando datos..."</span>)</span>
-<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"   (Este proceso puede tomar varios minutos)"</span>)</span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a>    </span>
 <span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a>    PROCESAR_DATOS <span class="op">=</span> <span class="va">True</span></span>
 <span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="kw">not</span> PROCESAR_DATOS:</span>
-<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">"</span> <span class="op">+</span> <span class="st">"="</span><span class="op">*</span><span class="dv">60</span>)</span>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a>   </span>
 <span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">" DATOS CARGADOS DESDE ARCHIVOS EXISTENTES"</span>)</span>
 <span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"="</span><span class="op">*</span><span class="dv">60</span>)</span>
 <span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"   Continúa con las visualizaciones."</span>)</span>
 <span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
-<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">"</span> <span class="op">+</span> <span class="st">"="</span><span class="op">*</span><span class="dv">60</span>)</span>
+<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a>   </span>
 <span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">" DATOS PROCESADOS DESDE SQL SERVER"</span>)</span>
 <span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"="</span><span class="op">*</span><span class="dv">60</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>PROCESO DE LIMPIEZA Y PREPARACIÓN DE DATOS
-============================================================
+------------------------------------------------------------
 
  LOS DATOS YA ESTÁN PROCESADOS
    Cargando archivos .parquet existentes...
    (Para actualizar datos, borra la carpeta data/processed/ y vuelve a ejecutar)
 
   Producción: 15,003 filas
-    Ventas: 41,461 filas
-    Calendario: 1,018 días
+    Ventas: 41,462 filas
+    Calendario: 1,019 días
     Productos: 11,473 filas
     Clientes: 1,841 filas
-
-============================================================
  DATOS CARGADOS DESDE ARCHIVOS EXISTENTES
 ============================================================
    Continúa con las visualizaciones.</code></pre>
@@ -270,7 +268,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="conexión-con-base-de-datos-sql-server" class="level1" data-number="2">
 <h1 data-number="2"><span class="header-section-number">2</span> 2. Conexión con base de datos SQL Server</h1>
 <p>Se crea una función reutilizable para cargar cada tabla de la base de datos. Se cargan las tablas de producción, ventas, productos, guías y clientes.</p>
-<div id="ca135a0e" class="cell" data-execution_count="2">
+<div id="256c9b69" class="cell" data-execution_count="2">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">Conectando a base de datos..."</span>)</span>
@@ -321,7 +319,7 @@ Conectando a base de datos...
 
 Cargando tablas desde SQL Server...
 ----------------------------------------
- IdInv: 366,211 filas, 59 columnas
+ IdInv: 366,212 filas, 59 columnas
  ImRec: 11,473 filas, 126 columnas
  VdVen: 41,462 filas, 48 columnas
  PdGuia: 15,004 filas, 14 columnas
@@ -333,7 +331,7 @@ Cargando tablas desde SQL Server...
 <section id="estandarizar-fechas-solo-tabla-de-ventas" class="level1" data-number="3">
 <h1 data-number="3"><span class="header-section-number">3</span> 3. Estandarizar fechas (solo tabla de Ventas)</h1>
 <p>La producción usa la fecha de la guía (PdGuiaFch). Las ventas usan VdVenFec. Se convierten ambas a formato datetime.</p>
-<div id="279d2d7c" class="cell" data-execution_count="3">
+<div id="99bdc715" class="cell" data-execution_count="3">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">Estandarizando fechas..."</span>)</span>
@@ -356,7 +354,7 @@ Estandarizando fechas...
 <section id="crear-tabla-calendario-normal" class="level1" data-number="4">
 <h1 data-number="4"><span class="header-section-number">4</span> 4. Crear tabla calendario normal</h1>
 <p>Se crea un calendario con todas las fechas desde el primer registro hasta el último.</p>
-<div id="cfff6eb7" class="cell" data-execution_count="4">
+<div id="a5b4811d" class="cell" data-execution_count="4">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">Creando calendario normal..."</span>)</span>
@@ -388,11 +386,11 @@ Creando calendario normal...
 <section id="enriquecer-tabla-de-ventas" class="level1" data-number="5">
 <h1 data-number="5"><span class="header-section-number">5</span> 5. Enriquecer tabla de Ventas</h1>
 <p>Se agrega la zona del cliente y las dimensiones de cada producto (largo, ancho, alto). Luego se calcula el volumen vendido en metros cúbicos.</p>
-<div id="4b568435" class="cell" data-execution_count="5">
+<div id="426bca62" class="cell" data-execution_count="5">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"ENRIQUECIENDO TABLA DE VENTAS"</span>)</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"="</span><span class="op">*</span><span class="dv">60</span>)</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"-"</span><span class="op">*</span><span class="dv">60</span>)</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Agregar zona desde XmCli</span></span>
 <span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st"> 1. Agregando zona de cliente (XmZonCod)..."</span>)</span>
@@ -473,7 +471,7 @@ Creando calendario normal...
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>ENRIQUECIENDO TABLA DE VENTAS
-============================================================
+------------------------------------------------------------
 
  1. Agregando zona de cliente (XmZonCod)...
     Zona asignada correctamente
@@ -507,11 +505,11 @@ Creando calendario normal...
 <section id="enriquecer-tabla-de-producción-y-agrupar-con-tabla-pdguia" class="level1" data-number="6">
 <h1 data-number="6"><span class="header-section-number">6</span> 6. Enriquecer tabla de Producción y agrupar con tabla PdGuia</h1>
 <p>Se agrupa la producción por número de guía para evitar duplicados. Se agregan las dimensiones de cada producto y se calcula el volumen producido.</p>
-<div id="93cddacd" class="cell" data-execution_count="6">
+<div id="8ac90e15" class="cell" data-execution_count="6">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"PRODUCCIÓN AGRUPADA POR GUÍA"</span>)</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"="</span><span class="op">*</span><span class="dv">60</span>)</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"-"</span><span class="op">*</span><span class="dv">60</span>)</span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Agrupar producción por guía</span></span>
 <span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st"> 1. Agrupando producción por guía..."</span>)</span>
@@ -587,7 +585,7 @@ Creando calendario normal...
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>PRODUCCIÓN AGRUPADA POR GUÍA
-============================================================
+------------------------------------------------------------
 
  1. Agrupando producción por guía...
     Guías únicas: 15,003
@@ -630,11 +628,11 @@ Name: count, dtype: int64
 <section id="guardar-archivos-.parquet-para-github" class="level1" data-number="7">
 <h1 data-number="7"><span class="header-section-number">7</span> 7. Guardar archivos .parquet para GitHub</h1>
 <p>Se guardan las tablas ya procesadas en formato Parquet para usarlas en el dashboard.</p>
-<div id="e1a457f6" class="cell" data-execution_count="7">
+<div id="4b96a2eb" class="cell" data-execution_count="7">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"GUARDANDO TABLAS ENRIQUECIDAS"</span>)</span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"="</span><span class="op">*</span><span class="dv">60</span>)</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"-"</span><span class="op">*</span><span class="dv">60</span>)</span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Crear carpeta si no existe</span></span>
 <span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>os.makedirs(<span class="st">'data/processed'</span>, exist_ok<span class="op">=</span><span class="va">True</span>)</span>
@@ -679,7 +677,7 @@ Name: count, dtype: int64
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>GUARDANDO TABLAS ENRIQUECIDAS
-============================================================
+------------------------------------------------------------
 
  1. Guardando producción enriquecida...
     produccion_enriquecida.parquet (15,003 filas, 15 columnas)
